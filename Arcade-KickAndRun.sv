@@ -294,11 +294,11 @@ wire [15:0] joy0_USB, joy1_USB;
 // 11..0. The core consumes joy0/joy1 as:
 //   [3:0]=R/L/D/U dirs, [5:4] & [7:6]=action buttons, [8]=coin, [9]=start.
 // REMAP to feed a DB9/DB15/Saturn pad into those slots:
-//   out[3:0]  = joydb[3:0]   directions  (identity)
-//   out[5:4]  = joydb[5:4]   B/C  -> primary kick/jump fire buttons
-//   out[7:6]  = joydb[7:6]   A/X  -> extra action buttons (unused by 2-btn game)
-//   out[8]    = joydb[11]    Mode -> Coin
-//   out[9]    = joydb[10]    Start-> Start
+//   out[3:0]  = joydb_1[3:0]   directions  (identity)
+//   out[5:4]  = joydb_1[5:4]   B/C  -> primary kick/jump fire buttons
+//   out[7:6]  = joydb_1[7:6]   A/X  -> extra action buttons (unused by 2-btn game)
+//   out[8]    = joydb_1[11]    Mode -> Coin
+//   out[9]    = joydb_1[10]    Start-> Start
 wire [15:0] joy0 = joydb_1ena ? (OSD_STATUS ? 16'b0 : {6'd0, joydb_1[10], joydb_1[11], joydb_1[7:0]}) : joy0_USB;
 wire [15:0] joy1 = joydb_2ena ? (OSD_STATUS ? 16'b0 : {6'd0, joydb_2[10], joydb_2[11], joydb_2[7:0]}) : joydb_1ena ? joy0_USB : joy1_USB;
 // [MiSTer-DB9-Pro END]
