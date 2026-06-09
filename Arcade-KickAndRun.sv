@@ -313,8 +313,8 @@ wire [15:0] joy0_USB, joy1_USB;
 //   out[7:6]  = joydb_1[7:6]   A/X  -> extra action buttons (unused by 2-btn game)
 //   out[8]    = joydb_1[11]    Mode -> Coin
 //   out[9]    = joydb_1[10]    Start-> Start
-wire [15:0] joy0 = joydb_1ena ? (OSD_STATUS ? 16'b0 : {6'd0, joydb_1[10], joydb_1[11], joydb_1[7:0]}) : joy0_USB;
-wire [15:0] joy1 = joydb_2ena ? (OSD_STATUS ? 16'b0 : {6'd0, joydb_2[10], joydb_2[11], joydb_2[7:0]}) : joydb_1ena ? joy0_USB : joy1_USB;
+wire [15:0] joy0 = joydb_1ena ? (OSD_STATUS ? 16'b0 : joydb_1_mapped[9:0]) : joy0_USB;
+wire [15:0] joy1 = joydb_2ena ? (OSD_STATUS ? 16'b0 : joydb_2_mapped[9:0]) : joydb_1ena ? joy0_USB : joy1_USB;
 // [MiSTer-DB9-Pro END]
 
 wire [21:0] gamma_bus;
